@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Our Wedding{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* === RESET & BASE === */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #d4af37; /* Gold */
+        --secondary: #8b7355; /* Muted brown */
+        --dark: #2c2c2c;
+        --light: #f8f8f8;
+        --white: #ffffff;
+        --accent: #c9a161;
+        --text: #333333;
+      }
+
+      body {
+        font-family: "Lato", sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--light);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+      }
+
+      /* === NAVIGATION === */
+      nav {
+        background: var(--white);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 400;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      /* === MAIN CONTENT === */
+      main {
+        min-height: calc(100vh - 200px);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      /* === FOOTER === */
+      footer {
+        background: var(--dark);
+        color: var(--white);
+        text-align: center;
+        padding: 2rem;
+        margin-top: 4rem;
+      }
+
+      footer p {
+        opacity: 0.8;
+      }
+
+      /* === UTILITIES === */
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: var(--primary);
+        color: var(--white);
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: all 0.3s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: var(--dark);
+      }
+
+      /* === MESSAGES === */
+      .messages {
+        max-width: 1200px;
+        margin: 1rem auto;
+        padding: 0 2rem;
+      }
+
+      .message {
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+      }
+
+      .message.success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .message.error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+
+      /* === RESPONSIVE === */
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1rem;
+          font-size: 0.9rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <a href="{% url 'wedding:home' %}" class="logo">❤️ Our Wedding</a>
+        <ul class="nav-links">
+          <li><a href="{% url 'wedding:home' %}">Home</a></li>
+          <li><a href="{% url 'wedding:our-story' %}">Our Story</a></li>
+          <li><a href="{% url 'wedding:events' %}">Events</a></li>
+          <li><a href="{% url 'wedding:gallery' %}">Gallery</a></li>
+          <li><a href="{% url 'wedding:rsvp' %}">RSVP</a></li>
+          <li><a href="{% url 'wedding:registry' %}">Registry</a></li>
+          <li><a href="{% url 'wedding:guestbook' %}">Guestbook</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main>{% block content %}{% endblock %}</main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Our Wedding | Made with ❤️ and Django</p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

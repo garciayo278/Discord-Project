@@ -1,0 +1,27 @@
+{% extends 'wedding/base.html' %} {% block content %}
+<div class="container" style="padding: 4rem 2rem; max-width: 800px">
+  <h1 class="section-title">RSVP</h1>
+  <p style="text-align: center; margin-bottom: 3rem">
+    We can't wait to celebrate with you! Please let us know if you'll be joining
+    us.
+  </p>
+
+  <form
+    method="POST"
+    style="
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    "
+  >
+    {% csrf_token %}
+    <p style="text-align: center; color: #666">
+      RSVP form coming soon! For now, please contact us directly.
+    </p>
+    <div style="text-align: center; margin-top: 2rem">
+      <a href="{% url 'wedding:home' %}" class="btn">Back to Home</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

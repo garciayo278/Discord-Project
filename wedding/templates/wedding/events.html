@@ -1,0 +1,61 @@
+{% extends 'wedding/base.html' %} {% block content %}
+<div class="container" style="padding: 4rem 2rem">
+  <h1 class="section-title">Wedding Events</h1>
+
+  {% if events %}
+  <div style="max-width: 900px; margin: 0 auto">
+    {% for event in events %}
+    <div
+      style="
+        background: white;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <h2 style="color: var(--primary); margin-bottom: 1rem">
+        {{ event.name }}
+      </h2>
+      <p style="font-size: 1.1rem; margin-bottom: 1rem">
+        {{ event.description }}
+      </p>
+
+      <div
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1rem;
+          margin-top: 1.5rem;
+        "
+      >
+        <div>
+          <strong>📅 Date:</strong><br />
+          {{ event.date_time|date:"F j, Y" }}
+        </div>
+        <div>
+          <strong>🕐 Time:</strong><br />
+          {{ event.date_time|time:"g:i A" }}
+        </div>
+        {% if event.venue %}
+        <div>
+          <strong>📍 Venue:</strong><br />
+          {{ event.venue.name }}
+        </div>
+        {% endif %} {% if event.dress_code %}
+        <div>
+          <strong>👔 Dress Code:</strong><br />
+          {{ event.dress_code }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p style="text-align: center; color: #666">
+    No events scheduled yet. Check back soon!
+  </p>
+  {% endif %}
+</div>
+{% endblock %}

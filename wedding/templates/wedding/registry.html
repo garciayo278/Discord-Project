@@ -1,0 +1,33 @@
+{% extends 'wedding/base.html' %} {% block content %}
+<div class="container" style="padding: 4rem 2rem">
+  <h1 class="section-title">Gift Registry</h1>
+
+  {% if registries %}
+  <div style="max-width: 800px; margin: 0 auto; display: grid; gap: 2rem">
+    {% for registry in registries %}
+    <div
+      style="
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      "
+    >
+      <h3 style="color: var(--primary); margin-bottom: 1rem">
+        {{ registry.name }}
+      </h3>
+      <p style="margin-bottom: 1.5rem">{{ registry.description }}</p>
+      <a href="{{ registry.url }}" target="_blank" class="btn"
+        >Visit Registry</a
+      >
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p style="text-align: center; color: #666">
+    Registry information coming soon!
+  </p>
+  {% endif %}
+</div>
+{% endblock %}
