@@ -83,14 +83,14 @@ A beautiful, full-featured wedding website built with Django.
 ## Project Structure
 
 ```
-studybud/
+studybud/                 # Root directory
 ├── wedding/              # Main wedding app
 │   ├── models.py        # Database models
 │   ├── views.py         # View logic
 │   ├── urls.py          # URL routing
 │   ├── admin.py         # Admin configuration
 │   └── templates/       # HTML templates
-├── studybud/            # Project settings
+├── wedding_site/         # Project settings
 ├── media/               # Uploaded images
 ├── manage.py            # Django CLI
 └── db.sqlite3          # Database
@@ -152,7 +152,7 @@ Edit `wedding/templates/wedding/base.html`:
 3. **Run Gunicorn**
 
    ```bash
-   gunicorn studybud.wsgi:application --bind 0.0.0.0:8000
+   gunicorn wedding_site.wsgi:application --bind 0.0.0.0:8000
    ```
 
 4. **Configure Nginx** (see deployment docs)
